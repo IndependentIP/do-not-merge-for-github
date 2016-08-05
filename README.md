@@ -8,6 +8,7 @@ Disables GitHub's PullRequest button
 * Select `Developer Mode`
 * Select `Load Unpacked Extension`
 * Select the `app` folder of this repo
+* Restart chrome.
 
 ## Options
 
