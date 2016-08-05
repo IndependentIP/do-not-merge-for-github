@@ -1,4 +1,4 @@
-# Do Not Merge WIP for GitHub
+# Do Not Merge for GitHub
 
 [![Version][version-image]][version-url] [![Build Status][travis-image]][travis-url] [![Dependency Status][daviddm-url]][daviddm-image]
 

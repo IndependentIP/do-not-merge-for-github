@@ -2,21 +2,21 @@
 <html>
     <head>
         <link href="styles/options.css" rel="stylesheet">
-        <script src="bower_components/jQuery/dist/jquery.js"></script>
+        <script src="lib/jquery.min.js"></script>
         <script src="scripts/options.js"></script>
     </head>
     <body>
       <div class="container">
         <div class="header">
-          <h1 class="title">Do Not Merge WIP for GitHub</h1>
+          <h1 class="title">Partial Request</h1>
         </div>
         <div class="content">
           <form action="" class="options">
             <div class="option">
-              <label for="protected_branch">Protected Branch <span class="weak">(Regular Expression)</span></label>
-              <input type="text" id="protected_branch" name="protected_branch" placeholder="e.g. deployment/*" /><br />
+              <label for="protected_author">Protected Author <span class="weak">(Regular Expression)</span></label>
+              <input type="text" id="protected_author" name="protected_author" placeholder="e.g. [Fuga|myotherauthor]" /><br />
                 <label for="button_message">Button Message <span class="weak">(String)</span></label>
-              <input type="text" id="button_message" name="button_message" placeholder="WIP! You can't merge!" />
+              <input type="text" id="button_message" name="button_message" placeholder="Go Merge Yourself!" />
             </div>
             <div class="buttons">
               <button id="save_btn" class="button">Save</button>
