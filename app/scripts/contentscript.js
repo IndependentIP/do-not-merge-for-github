@@ -3,54 +3,36 @@
 (function($){
   var changeMergeButtonState = function() {
     var $container = $('#js-repo-pjax-container');
-    var author = $container.find('span.author').text()
-    // var issueTitle = $container.find('.js-issue-title').text();
-    var $buttonMerge = $container.find('.merge-message button.js-merge-branch-action');
-    var disabled = true;
-    var buttonHtml = '';
-
+    var author = $container.find('.repohead-details-container span.author').text()
+    var $buttonMerge = $container.find('.merge-message .btn');
+    var $altMergeP = $container.find('.merge-message .alt-merge-options');
+    
     chrome.runtime.sendMessage({from: 'content', subject: 'localStorage'}, function(response){
       if (!response) { return; }
 
+      var disabled = true;
       var localStorage = response.localStorage;
-      console.log("response", response)
       if (localStorage && localStorage.protectedAuthor) {
-          disabled = issueTitle.match(localStorage.protectedAuthor)
-          console.log("issueTitle", issueTitle)
-          console.log("disabled", disabled)
+          disabled = author.match(localStorage.protectedAuthor)
       }
-      // var wipTitleRegex = /(\[wip\]|\[do\s*not\s*merge\]|\[dnm\])/i;
-      // var wipTagRegex = /(wip|do\s*not\s*merge|dnm)/i;
+    
+      if (disabled) {
+        var buttonMessage = 'Go Merge Yourself!';
+        if (localStorage && localStorage.buttonMessage) {
+          buttonMessage = localStorage.buttonMessage;
+        }
 
-      // var isWipTitle = wipTitleRegex.test(issueTitle);
-      // var isWipTaksList = $container.find('.timeline-comment:first input[type="checkbox"]:not(:checked)').length > 0;
-      // var isSquashCommits = false;
-      // $container.find('#commits_bucket .commit .commit-title').each(function(i, elem){
-      //   isSquashCommits = isSquashCommits || $(elem).text().match(/^\s*(squash|fixup)!\s/);
-      // });
+        $buttonMerge.attr('disabled', true);
+        $buttonMerge.html('<span class="octicon octicon-git-merge"></span> ' + buttonMessage);
 
-      // var isWipTag = false;
-      // $container.find('#discussion_bucket .labels .label').each(function(i, elem) {
-      //   isWipTag = isWipTag || $(elem).text().match(wipTagRegex);
-      // });
-
-      // disabled = (isWipTitle || isWipTaksList || isSquashCommits || isWipTag);
-
-      var buttonMessage = '';
-
-      if (localStorage && localStorage.buttonMessage) {
-        buttonMessage = localStorage.buttonMessage;
-      } else {
-        buttonMessage = 'Go Merge Yourself!';
+        var altMergeMessage = 'See the Fuga <a href="https://github.com/IndependentIP/docs/tree/master/git">docs</a>';
+        if (localStorage && localStorage.altMergeMessage) {
+          altMergeMessage = localStorage.altMergeMessage;
+        }
+        $altMergeP.html(altMergeMessage);
       }
-
-      buttonHtml = '<span class="octicon octicon-git-merge"></span> ' + (disabled ? buttonMessage : 'Merge pull request');
-      
-      $buttonMerge.attr('disabled', disabled);
-      $buttonMerge.html(buttonHtml);
     });
   };
 
   changeMergeButtonState();
-  setInterval(changeMergeButtonState, 1000);
 })(jQuery);
