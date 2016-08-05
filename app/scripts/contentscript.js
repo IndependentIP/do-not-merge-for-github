@@ -35,4 +35,5 @@
   };
 
   changeMergeButtonState();
+  setInterval(changeMergeButtonState, 1000);
 })(jQuery);
