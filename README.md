@@ -20,6 +20,6 @@ Disables GitHub's PullRequest button
    * Defaults to `Go Merge Yourself!`
 * **Alternate Merge Message**
   Explain alternate merge options or instructions. 
-   * Defaults to `'See the Fuga <a href="https://github.com/IndependentIP/docs/tree/master/git">docs</a>'`
+   * Defaults to See the Fuga [docs](https://github.com/IndependentIP/docs/tree/master/git")
 
 
